@@ -102,7 +102,7 @@ double cov_correlation(Mat image1, Mat image2){
 int main( int argc, char** argv ){
 
   if( argc != 3 ){
-    printf( "Usage :\n \t * DisplayVideo <videofile> <output data file> \n" );
+    printf( "Usage :\n \t * analyser <videofile> <output data file> \n" );
     return -1;
   }
 
@@ -120,7 +120,7 @@ int main( int argc, char** argv ){
   Mat frame, oldFrame;
   captRefrnc >> oldFrame;
   frame = oldFrame;
-  namedWindow( "Display Image", WINDOW_AUTOSIZE );
+  namedWindow( "analyser", WINDOW_AUTOSIZE );
 
 
   auto t_debut = std::chrono::system_clock::now();
@@ -134,7 +134,7 @@ int main( int argc, char** argv ){
 
   while(!frame.empty()){
 
-    imshow( "Display Image", frame);
+    imshow( "analyser", frame);
 
 
     double R=1-correlation2(oldFrame, frame);
