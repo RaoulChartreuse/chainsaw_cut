@@ -91,9 +91,14 @@ void draw_histo(cv::Mat image, vector<double> R_tab, int index){
     x_last=x;
     y_last=y;
   }
-
   
-  
+  string frame = to_string(index)+" frame Nb";
+  cv::putText( image,
+	       frame,
+	       cv::Point(6*l/10, h/10),
+	       FONT_HERSHEY_SIMPLEX,
+	       1,
+	       Scalar( 80, 180, 180));
 }
 
 int main( int argc, char** argv ){
