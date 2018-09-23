@@ -6,8 +6,6 @@
 #include <chrono>
 #include <fstream>
 
-#include <boost/archive/text_oarchive.hpp>
-
 
 using namespace cv;
 using namespace std;
@@ -113,9 +111,9 @@ int main( int argc, char** argv ){
     return -1;
   }
 
-  std::ofstream ofs(argv[2]);
-  boost::archive::text_oarchive oa(ofs);
 
+  
+  ofstream ofs(argv[2]);
 
   Mat frame, oldFrame;
   captRefrnc >> oldFrame;
@@ -151,7 +149,7 @@ int main( int argc, char** argv ){
       
     }
 
-    oa << R;
+    ofs << R;
     if(R>0.7){
       waitKey(1);
     }
@@ -164,6 +162,7 @@ int main( int argc, char** argv ){
 
     captRefrnc >> frame;
   }
+  ofs.close();
   cout<<endl;
   t_now = std::chrono::system_clock::now();
   std::chrono::duration<double> d = t_now-t_debut;

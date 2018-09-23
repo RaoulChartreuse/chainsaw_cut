@@ -1,6 +1,5 @@
 cmake_minimum_required(VERSION 2.8)
 project(chainsow_cut)
 find_package(OpenCV REQUIRED)
-find_package(Boost COMPONENTS system filesystem serialization REQUIRED)
 add_executable(analyser analyser.cpp)
-target_link_libraries( analyser ${OpenCV_LIBS} ${Boost_SERIALIZATION_LIBRARY}   )
+target_link_libraries( analyser ${OpenCV_LIBS}  )
