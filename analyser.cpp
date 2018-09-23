@@ -149,7 +149,7 @@ int main( int argc, char** argv ){
       
     }
 
-    ofs << R;
+    ofs << R<<" ";
     if(R>0.7){
       waitKey(1);
     }
