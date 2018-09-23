@@ -1,5 +1,9 @@
 cmake_minimum_required(VERSION 2.8)
 project(chainsow_cut)
 find_package(OpenCV REQUIRED)
+
 add_executable(analyser analyser.cpp)
 target_link_libraries( analyser ${OpenCV_LIBS}  )
+
+add_executable(graph graph.cpp)
+target_link_libraries( graph ${OpenCV_LIBS}  )
