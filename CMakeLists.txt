@@ -7,3 +7,6 @@ target_link_libraries( analyser ${OpenCV_LIBS}  )
 
 add_executable(graph graph.cpp)
 target_link_libraries( graph ${OpenCV_LIBS}  )
+
+add_executable(cut cut.cpp)
+target_link_libraries( cut ${OpenCV_LIBS}  )

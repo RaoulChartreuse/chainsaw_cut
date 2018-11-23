@@ -9,7 +9,7 @@
 using namespace cv;
 using namespace std;
 
-
+// This is not an histograme, it's a graph
 void draw_histo(cv::Mat image, vector<double> R_tab, int index){
   int l = image.cols;
   int h = image.rows;
