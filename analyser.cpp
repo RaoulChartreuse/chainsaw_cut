@@ -99,7 +99,7 @@ int main( int argc, char** argv ){
     i++;
 
 
-	    oldFrame = frame.clone();
+    oldFrame = frame.clone();
 
     captRefrnc >> frame;
   }
