@@ -125,6 +125,8 @@ int main( int argc, char** argv ){
     ifs >> tmp;
     r=atof(tmp.c_str());
     if (isnan(r)) r=0;
+    if (isinf(r)) r=1;
+    
     R_tab.push_back(r);
   }
 
