@@ -10,25 +10,17 @@
 using namespace cv;
 using namespace std;
 
-double correlation2(cv::UMat &image_1, cv::UMat &image_2)   {
-  UMat grey1, grey2;
-  cvtColor(image_1, grey1, COLOR_BGR2GRAY);
-  cvtColor(image_2, grey2, COLOR_BGR2GRAY);
+double correlation2(cv::UMat &im_1, cv::UMat &im_2)   {
 
-  // convert data-type to "float"
-  cv::UMat im_float_1;
-  grey1.convertTo(im_float_1, CV_32F);
-  cv::UMat im_float_2;
-  grey2.convertTo(im_float_2, CV_32F);
 
-  int n_pixels = grey1.rows * grey1.cols ;
   // Compute mean and standard deviation of both images
+  int n_pixels = im_1.rows * im_1.cols ;
   cv::Scalar im1_Mean, im1_Std, im2_Mean, im2_Std;
-  meanStdDev(im_float_1, im1_Mean, im1_Std);
-  meanStdDev(im_float_2, im2_Mean, im2_Std);
+  meanStdDev(im_1, im1_Mean, im1_Std);
+  meanStdDev(im_2, im2_Mean, im2_Std);
 
   // Compute covariance and correlation coefficient
-  double correl = im_float_1.dot(im_float_2);
+  double correl = im_1.dot(im_2);
   correl -= n_pixels* im1_Mean[0]*im2_Mean[0];
   correl /= n_pixels*im1_Std.val[0] * im2_Std.val[0];
 
@@ -58,6 +50,7 @@ int main( int argc, char** argv ){
 
   UMat frame, oldFrame;
   captRefrnc >> oldFrame;
+  cvtColor(oldFrame, oldFrame, COLOR_BGR2GRAY);
   frame = oldFrame;
   namedWindow( "analyser", WINDOW_AUTOSIZE );
 
@@ -71,6 +64,8 @@ int main( int argc, char** argv ){
   int n_frames = (int) captRefrnc.get( CAP_PROP_FRAME_COUNT);
   cout<<"Nbr de frames ="<< n_frames <<endl;
 
+
+ 
   while(!frame.empty()){
 
     imshow( "analyser", frame);
@@ -102,6 +97,8 @@ int main( int argc, char** argv ){
     oldFrame = frame.clone();
 
     captRefrnc >> frame;
+    if (frame.empty()) break;
+    cvtColor(frame, frame, COLOR_BGR2GRAY);
   }
   ofs.close();
   cout<<endl;
