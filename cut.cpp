@@ -2,58 +2,20 @@
 #include <string.h>
 #include <opencv2/opencv.hpp>
 #include <fstream>
-
-
-#include <boost/filesystem.hpp>
-
-using namespace boost::filesystem;
 using namespace std;
+#include "check_dir.h"
+
+
+
 using namespace cv;
 
 #define CUT_VALUE 0.7
 
 
-int check_dir(path p){
-  std::cout<< p << " is an empty directory ?\n";
-  //Test du repertoire
-  
-  if(!exists(p) ) {
-    printf("Invalid path \n");
-    return -1;
-  }
-
-  if(!is_directory(p) ) {
-    printf("Path is not a directory \n");
-    return -1;
-  }
-
-  if(boost::filesystem::is_empty(p)){
-    cout<< " is empty. It's all good men !"<<endl;
-    return 1;
-  }
-  else{
-    cout << p << " is a directory containing:\n";
-  
-    for (directory_entry& x : directory_iterator(p))
-      cout<< "    " << x.path() << '\n';
-      cout << "Should we delete it ?"<< endl;
-      return -1;
-  }
-}
-  
-string make_name(path p, int index){
-  stringstream ss;
-  ss << p.string();
-  ss << "out_" ;
-  ss << std::setw(5) << std::setfill('0') << index;
-  ss << ".avi";
-  string s = ss.str();
-  return s;
-}
 
 int main( int argc, char** argv ){
   if( argc != 4 ){
-    printf( "Usage :\n \t * cut <analyse file> <video file> <output directory>  \n" );
+    printf( "Usage :\n \t * cut_file <analyse file> <video file> <output directory>  \n" );
     return -1;
   }
   // argv[0] cut
@@ -71,15 +33,17 @@ int main( int argc, char** argv ){
 
   
   // Ouvrir le fichier d'analyse
-  std::ifstream ifs(argv[2]);
+  std::ifstream ifs(argv[1]);
   vector<double> R_tab;
   double r;
   string tmp;
+  int Nb_de_frame=0;
   while ( !ifs.eof()){
     ifs >> tmp;
     r=atof(tmp.c_str());
-    if (isnan(r)) r=0;
+    if (isnan(r) || isinf(r)) r=0;
     R_tab.push_back(r);
+    Nb_de_frame++;
   }
 
 
@@ -96,7 +60,7 @@ int main( int argc, char** argv ){
   captRefrnc >> frame;
 
   int   index = 0;
-  string out_name= make_name(p, index);
+  string out_name= make_name(p, index, ".avi");
 
   int ex = static_cast<int>(captRefrnc.get(CAP_PROP_FOURCC));//on utilise le meme codecs c'est un peu nul
   Size S = Size((int) captRefrnc.get(CAP_PROP_FRAME_WIDTH), 
@@ -111,7 +75,13 @@ int main( int argc, char** argv ){
   while(!frame.empty()){
     if (R_tab[i] > CUT_VALUE){
       index ++;
-      out_name= make_name(p, index);
+      outputVideo.release();
+      out_name= make_name(p, index, ".avi");
+      
+      cout<<out_name<<"  ";
+      cout<<i<<" /  "<< Nb_de_frame<< "  =  "<< 1.*i/Nb_de_frame*100<<" %              \r";
+								      cout.flush();
+      
       outputVideo.open(out_name , ex, captRefrnc.get(CAP_PROP_FPS),S, true);
     }
     outputVideo << frame;
@@ -119,8 +89,8 @@ int main( int argc, char** argv ){
     captRefrnc >> frame;
     i++;
   }
+  outputVideo.release();
 
-  // -> Ecrire les fichiers
   //fin
   return 0;
 }
