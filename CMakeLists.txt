@@ -22,3 +22,6 @@ target_link_libraries( graph ${OpenCV_LIBS}  )
 
 add_executable(cut_file cut.cpp) 
 target_link_libraries( cut_file ${OpenCV_LIBS} ${Boost_FILESYSTEM_LIBRARY}  ${Boost_SYSTEM_LIBRARY})
+
+add_executable(mosaic mosaic.cpp) 
+target_link_libraries( mosaic ${OpenCV_LIBS} ${Boost_FILESYSTEM_LIBRARY}  ${Boost_SYSTEM_LIBRARY})
