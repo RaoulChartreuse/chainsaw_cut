@@ -7,10 +7,21 @@ import subprocess
 import os
 
 
-dir = "tmp/"
+ap = argparse.ArgumentParser()
+
+ap.add_argument("-d", "--directory", required = True,
+                help = "Repertoire")
+ap.add_argument("-p", "--prefix", required = False,
+                help = "Repertoire", default="canvas_")
+ap.add_argument("-s", "--scale", required = False,
+                help = "Echelle", default=8)
+args = ap.parse_args()
+dir = args.directory
 row = 5
 col = 6
-scale = 8 #Echelle 1/2
+scale = args.scale #Echelle 1/2
+prefix = args.prefix
+
 
 images = os.listdir(dir)
 images.sort(reverse=True)
@@ -35,7 +46,7 @@ while  len(images) >0:
             canvas[i*dx:((i+1)*dx), j*dy:((j+1)*dy)] = mini
             
     
-    cv2.imwrite("canvas_"+str(n)+".png", canvas)
+    cv2.imwrite(prefix+str(n)+".png", canvas)
     
     n+=1
 
