@@ -13,9 +13,9 @@ int main( int argc, char** argv ){
 
     const std::string videoRef = argv[1];
     BoucleTraitement *boucle = new BoucleTraitement(videoRef);
-    boucle->setCorrelationProvider( new ComputeCorrelationProvider("Compute")
+    boucle->setCorrelationProvider(new ComputeCorrelationProvider("Compute")
     );
-    boucle->addTraitement(new GraphTraitement("Graph", "mon graph", "out.avi", true));
+    boucle->addTraitement(new GraphTraitement("Graph", "mon graph", "out.avi", false));
 
     boucle->run();
 

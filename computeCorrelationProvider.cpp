@@ -5,16 +5,16 @@
 #include "computeCorrelationProvider.h"
 
 using namespace cv;
-void ComputeCorrelationProvider::preTraitement(cv::VideoCapture captRef, cv::UMat &oldFrame) {
-    Traitement::preTraitement(cv::VideoCapture(), oldFrame);
-    cvtColor(oldFrame, *this->oldFrame, COLOR_BGR2GRAY);
-    frame = this->oldFrame;
+void ComputeCorrelationProvider::preTraitement(cv::VideoCapture captRef, cv::UMat &firstFrame) {
+
+    cvtColor(firstFrame, oldFrame, COLOR_BGR2GRAY);
+    frame = oldFrame;
 }
 
-void ComputeCorrelationProvider::mainTraitement(cv::UMat &frame) {
-    *r = 1. - correlation2(*oldFrame, *this->frame);
-    *oldFrame = this->frame->clone();
-    cvtColor(frame, *this->frame, COLOR_BGR2GRAY);
+void ComputeCorrelationProvider::mainTraitement(cv::UMat &currentFrame) {
+    *r = 1. - correlation2(oldFrame, frame);
+    oldFrame = frame.clone();
+    cvtColor(currentFrame, frame, COLOR_BGR2GRAY);
     //cvt et correlation sont lourd tout les deux, une parallelisation est possible
     //Mais il faut faire attention à frame
 }
