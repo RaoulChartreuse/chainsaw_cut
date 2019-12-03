@@ -23,7 +23,7 @@ include_directories(${PROJECT_SOURCE_DIR})
 
 
 add_executable(build/chainsaw main.cpp BoucleTraitement.cpp
-        Traitement.cpp Display.cpp )
+        Traitement.cpp Display.cpp CorrelationProvider.cpp CorrelationProvider.h computeCorrelationProvider.cpp computeCorrelationProvider.h graphTraitement.cpp graphTraitement.h)
 target_link_libraries( build/chainsaw
         ${OpenCV_LIBS} ${Boost_FILESYSTEM_LIBRARY}  ${Boost_SYSTEM_LIBRARY})
 

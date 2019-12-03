@@ -5,9 +5,12 @@
 #include "Traitement.h"
 
 
-void Traitement::preTraitement(){
-}
+
 void Traitement::mainTraitement(cv::UMat &frame){
 }
 void Traitement::postTraitement(){
+}
+
+void Traitement::preTraitement(cv::VideoCapture captRef, cv::UMat &oldFrame) {
+
 }

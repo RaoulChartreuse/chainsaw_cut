@@ -11,6 +11,6 @@ void Display::preTraitement() {
 
 void Display::mainTraitement(cv::UMat &frame) {
 
-    imshow( this->getNom(), frame);//le nom doit rester constant
+    imshow(this->getNom(), frame);//le nom doit rester constant
     waitKey(1);
 }

@@ -7,17 +7,20 @@
 
 #include <opencv2/opencv.hpp>
 #include "Traitement.h"
+#include "CorrelationProvider.h"
 #include <stdio.h>
 
 class BoucleTraitement {
-
+private :
     std::vector<Traitement*> listeTraitement;
     cv::VideoCapture captRef;
+    CorrelationProvider *corProvider;
 
 public :
     BoucleTraitement(std::string videoRef);
 
     void addTraitement(Traitement *traitement);
+    void setCorrelationProvider(CorrelationProvider *provider);
 
     void run();
 

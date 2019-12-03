@@ -32,10 +32,7 @@ double correlation2(cv::UMat &im_1, cv::UMat &im_2)   {
 
 int main( int argc, char** argv ){
 
-  if( argc != 3 ){
-    printf( "Usage :\n \t * analyser <videofile> <output data file> \n" );
-    return -1;
-  }
+
 
   const string videoRef = argv[1];
   VideoCapture captRefrnc(videoRef);
@@ -52,7 +49,7 @@ int main( int argc, char** argv ){
   captRefrnc >> oldFrame;
   cvtColor(oldFrame, oldFrame, COLOR_BGR2GRAY);
   frame = oldFrame;
-  namedWindow( "analyser", WINDOW_AUTOSIZE );
+  namedWindow( "analys", WINDOW_AUTOSIZE );
 
 
   auto t_debut = std::chrono::system_clock::now();
@@ -68,7 +65,7 @@ int main( int argc, char** argv ){
  
   while(!frame.empty()){
 
-    imshow( "analyser", frame);
+    imshow( "analys", frame);
 
 
     double R=1-correlation2(oldFrame, frame);

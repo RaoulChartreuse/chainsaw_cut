@@ -4,6 +4,7 @@
 
 #include <chrono>
 #include "BoucleTraitement.h"
+#include "CorrelationProvider.h"
 
 
 using namespace cv;
@@ -18,6 +19,10 @@ void BoucleTraitement::addTraitement(Traitement *traitement){
     listeTraitement.push_back(traitement);
 }
 
+void BoucleTraitement::setCorrelationProvider(CorrelationProvider *provider){
+    corProvider = provider;
+}
+
 void BoucleTraitement::run(){
     cv::UMat frame;
     captRef >> frame;
@@ -29,11 +34,22 @@ void BoucleTraitement::run(){
 
     int i=1;
     cout<<"*********************************"<<endl;
-    cout<<"**          Chainsow           **"<<endl;
+    cout<<"**          Chainsaw           **"<<endl;
     cout<<"*********************************"<<endl<<endl;
     cout<<"Format de l'image :"<< frame.size()<<endl;
     int n_frames = (int) captRef.get( CAP_PROP_FRAME_COUNT);
     cout<<"Nbr de frames ="<< n_frames <<endl;
+
+
+    cout<<"Coeficient de correlation : "<< corProvider->getNom()<<endl;
+    cout<<endl;
+    double r = 0.;
+    corProvider->setRPointer(r);
+    corProvider->preTraitement(captRef, frame);
+    for (auto& traitement : listeTraitement){
+        traitement->setRPointer(r);
+        traitement->preTraitement(captRef, frame);
+    }
 
 
     //Preembule
@@ -43,9 +59,7 @@ void BoucleTraitement::run(){
     }
     cout<<endl;
 
-    for (auto& traitement : listeTraitement){
-        traitement->preTraitement();
-    }
+
 
     while(!frame.empty()){
         t_now = std::chrono::system_clock::now();
@@ -59,6 +73,7 @@ void BoucleTraitement::run(){
             t_last =std::chrono::system_clock::now();
         }
 
+        corProvider->mainTraitement(frame);
         for (auto& traitement : listeTraitement){
             traitement->mainTraitement(frame);
         }

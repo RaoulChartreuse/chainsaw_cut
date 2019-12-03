@@ -12,6 +12,8 @@ class Traitement {
     std::string nom;
     std::string description;
 
+protected:
+    double *r;
 public :
     Traitement(std::string nom){
     this->nom = nom;
@@ -22,7 +24,7 @@ Traitement(std::string nom, std::string description){
     this->description = description;
 }
 
-    virtual void preTraitement();
+    virtual void preTraitement(cv::VideoCapture captRef, cv::UMat &oldFrame);
     virtual void mainTraitement(cv::UMat &frame);
     virtual void postTraitement();
 
@@ -32,6 +34,7 @@ Traitement(std::string nom, std::string description){
         this->description = description; ;}
     std::string getDescription() {return description;}
 
+    void setRPointer(double &i) { r = &i;}
 
 };
 
