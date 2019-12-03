@@ -2,7 +2,7 @@
 // Created by laurent on 01/12/2019.
 //
 
-#include "computeCorrelationProvider.h"
+#include "ComputeCorrelationProvider.h"
 
 using namespace cv;
 void ComputeCorrelationProvider::preTraitement(cv::VideoCapture captRef, cv::UMat &firstFrame) {

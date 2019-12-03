@@ -5,10 +5,9 @@ Cut est problmatique, il ne fait le cedoupage qu'entre les keys frames.
 C'est plutot rapide mais le resultat n'est pas frame perfect.
 """
 import argparse
-import numpy as np
 import cv2
+import numpy as np
 import subprocess
-
 
 ap = argparse.ArgumentParser()
 ap.add_argument("-i", "--input", required = True,
@@ -47,8 +46,7 @@ print len(cut)
 
 i=0
 for t in cut :
-    
-    #ffmpeg -ss 4200 -t 00:00:30 -i /media/Vidéos/Whipl.avi -c copy tmp.avi 
+    # ffmpeg -ss 4200 -t 00:00:30 -i /media/Vidéos/Whipl.avi -c copy tmp.avi
     print "ffmpeg -ss", t[0],"-t", t[1]-t[0], "-i", input, "-c copy", output+"/%03d.avi"%i
     a = subprocess.call(["ffmpeg","-y",
                          "-loglevel", "panic",

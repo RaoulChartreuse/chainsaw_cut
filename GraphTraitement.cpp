@@ -2,7 +2,7 @@
 // Created by laurent on 01/12/2019.
 //
 
-#include "graphTraitement.h"
+#include "GraphTraitement.h"
 
 using namespace cv;
 using namespace std;
@@ -25,7 +25,7 @@ void GraphTraitement::mainTraitement(cv::UMat &frame) {
     R_tab.push_back(*r);
     frameBuffer.push_back(frame);
     indexFrame++;
-    std::cout << endl << "Frame number :" << indexFrame << std::endl;
+    // std::cout << endl << "Frame number :" << indexFrame << std::endl;
 }
 
 void GraphTraitement::postTraitement() {
@@ -124,7 +124,7 @@ void GraphTraitement::draw_graph(int index) {
                 1,
                 Scalar(80, 180, 180));
 
-    cout << "Apres les traitements" << endl;
+
     if (display) {
         imshow("graph", image);
         waitKey(1);
