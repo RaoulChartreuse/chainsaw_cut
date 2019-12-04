@@ -6,6 +6,7 @@
 #include "WriteCorrelationTraitement.h"
 #include "readCorrelationProvider.h"
 #include "cutTraitement.h"
+#include "mosaicTraitement.h"
 
 int main(int argc, char **argv) {
     //Traitement des paramètres
@@ -19,9 +20,10 @@ int main(int argc, char **argv) {
     boucle->setCorrelationProvider(new ComputeCorrelationProvider("Compute"));
     //boucle->setCorrelationProvider(new ReadCorrelationProvider("ReadFile", "Dumbo.dat"));
     //boucle->addTraitement(new GraphTraitement("Graph", "mon graph", "out.avi", false));
-    //boucle->addTraitement(new WriteCorrelationTraitement("WriteR", "Description", "Dumbo.dat"));
-    boucle->addTraitement(new CutTraitement("Coupe !", "", "dir"));
+    boucle->addTraitement(new WriteCorrelationTraitement("WriteR", "Description", "Dumbo.dat"));
+    //boucle->addTraitement(new CutTraitement("Coupe !", "", "dir"));
     //boucle->addTraitement(new Display("Display"));
+    //boucle->addTraitement(new MosaicTraitement("Mosaic", "", "dir"));
     boucle->run();
 
 }

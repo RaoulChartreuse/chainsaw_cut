@@ -9,6 +9,8 @@ using namespace std;
 using namespace cv;
 #define CUT_VALUE 0.7
 
+using namespace boost::filesystem;
+
 void CutTraitement::preTraitement(cv::VideoCapture captRef, cv::UMat &oldFrame) {
     ex = static_cast<int>(captRef.get(cv::CAP_PROP_FOURCC));//on utilise le meme codecs c'est un peu nul
     S = cv::Size((int) captRef.get(cv::CAP_PROP_FRAME_WIDTH),

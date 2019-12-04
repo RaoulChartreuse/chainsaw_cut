@@ -13,6 +13,7 @@ void ComputeCorrelationProvider::preTraitement(cv::VideoCapture captRef, cv::UMa
 
 void ComputeCorrelationProvider::mainTraitement(cv::UMat &currentFrame) {
     *r = 1. - correlation2(oldFrame, frame);
+    if (isnan(*r) || isinf(*r)) *r = 0;
     oldFrame = frame.clone();
     cvtColor(currentFrame, frame, COLOR_BGR2GRAY);
     //cvt et correlation sont lourd tout les deux, une parallelisation est possible
