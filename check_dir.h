@@ -30,7 +30,7 @@ int check_dir(path p){
   }
 }
 
-std::string make_name(path p, int index, std::string extention) {
+std::string make_name(path p, int index, const std::string &extention) {
     std::stringstream ss;
     ss << p.string();
     ss << "/";

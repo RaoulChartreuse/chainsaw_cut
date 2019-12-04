@@ -14,7 +14,8 @@ class CutTraitement : public Traitement {
 private :
     cv::VideoWriter outputVideo;
     std::string file;
-    int ex, fps, file_index;
+    int ex, file_index;
+    double fps;
     cv::Size S;
     boost::filesystem::path directory;
 
