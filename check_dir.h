@@ -2,6 +2,7 @@
 
 using namespace boost::filesystem;
 
+
 int check_dir(path p){
   std::cout<< p << " is an empty directory ?\n";
   //Test du repertoire
@@ -17,26 +18,25 @@ int check_dir(path p){
   }
 
   if(boost::filesystem::is_empty(p)){
-    cout<< " is empty. It's all good men !"<<endl;
+    std::cout << " is empty. It's all good men !" << std::endl;
     return 1;
-  }
-  else{
-    cout << p << " is a directory containing:\n";
-  
-    for (directory_entry& x : directory_iterator(p))
-      cout<< "    " << x.path() << '\n';
-      cout << "Should we delete it ?"<< endl;
+  } else {
+      std::cout << p << " is a directory containing:\n";
+
+      for (directory_entry &x : directory_iterator(p))
+          std::cout << "    " << x.path() << '\n';
+      std::cout << "Should we delete it ?" << std::endl;
       return -1;
   }
 }
-  
-string make_name(path p, int index, string extention){
-  stringstream ss;
-  ss << p.string();
-  ss << "/";
-  ss << "out_" ;
-  ss << std::setw(5) << std::setfill('0') << index;
-  ss << extention;
-  string s = ss.str();
-  return s;
+
+std::string make_name(path p, int index, std::string extention) {
+    std::stringstream ss;
+    ss << p.string();
+    ss << "/";
+    ss << "out_";
+    ss << std::setw(5) << std::setfill('0') << index;
+    ss << extention;
+    std::string s = ss.str();
+    return s;
 }

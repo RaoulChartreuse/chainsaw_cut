@@ -5,6 +5,7 @@
 #include "ComputeCorrelationProvider.h"
 #include "WriteCorrelationTraitement.h"
 #include "readCorrelationProvider.h"
+#include "cutTraitement.h"
 
 int main(int argc, char **argv) {
     //Traitement des paramètres
@@ -15,11 +16,12 @@ int main(int argc, char **argv) {
 
     const std::string videoRef = argv[1];
     BoucleTraitement *boucle = new BoucleTraitement(videoRef);
-    //boucle->setCorrelationProvider(new ComputeCorrelationProvider("Compute"));
-    boucle->setCorrelationProvider(new ReadCorrelationProvider("ReadFile", "Dumbo.dat"));
+    boucle->setCorrelationProvider(new ComputeCorrelationProvider("Compute"));
+    //boucle->setCorrelationProvider(new ReadCorrelationProvider("ReadFile", "Dumbo.dat"));
     //boucle->addTraitement(new GraphTraitement("Graph", "mon graph", "out.avi", false));
     //boucle->addTraitement(new WriteCorrelationTraitement("WriteR", "Description", "Dumbo.dat"));
-    boucle->addTraitement(new Display("Display"));
+    boucle->addTraitement(new CutTraitement("Coupe !", "", "dir"));
+    //boucle->addTraitement(new Display("Display"));
     boucle->run();
 
 }
