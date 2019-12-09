@@ -7,7 +7,7 @@
 using namespace std;
 using namespace cv;
 
-void ReadCorrelationProvider::preTraitement(cv::VideoCapture captRef, cv::UMat &oldFrame) {
+void ReadCorrelationProvider::preTraitement(VideoCapture *captRef, cv::UMat &oldFrame) {
     ifs = ifstream(file);
 }
 

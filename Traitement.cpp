@@ -11,6 +11,6 @@ void Traitement::mainTraitement(cv::UMat &frame){
 void Traitement::postTraitement(){
 }
 
-void Traitement::preTraitement(cv::VideoCapture captRef, cv::UMat &oldFrame) {
+void Traitement::preTraitement(cv::VideoCapture *captRef, cv::UMat &oldFrame) {
 
 }

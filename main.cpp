@@ -17,13 +17,13 @@ int main(int argc, char **argv) {
 
     const std::string videoRef = argv[1];
     BoucleTraitement *boucle = new BoucleTraitement(videoRef);
-    boucle->setCorrelationProvider(new ComputeCorrelationProvider("Compute"));
-    //boucle->setCorrelationProvider(new ReadCorrelationProvider("ReadFile", "Dumbo.dat"));
+    //boucle->setCorrelationProvider(new ComputeCorrelationProvider("Compute"));
+    boucle->setCorrelationProvider(new ReadCorrelationProvider("ReadFile", "Dumbo.dat"));
     //boucle->addTraitement(new GraphTraitement("Graph", "mon graph", "out.avi", false));
-    boucle->addTraitement(new WriteCorrelationTraitement("WriteR", "Description", "Dumbo.dat"));
+    //boucle->addTraitement(new WriteCorrelationTraitement("WriteR", "Description", "Dumbo.dat"));
     //boucle->addTraitement(new CutTraitement("Coupe !", "", "dir"));
     //boucle->addTraitement(new Display("Display"));
-    //boucle->addTraitement(new MosaicTraitement("Mosaic", "", "dir"));
+    boucle->addTraitement(new MosaicTraitement("Mosaic", "", "dir"));
     boucle->run();
 
 }

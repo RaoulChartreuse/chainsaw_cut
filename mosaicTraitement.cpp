@@ -10,13 +10,13 @@ using namespace std;
 using namespace cv;
 using namespace boost::filesystem;
 
-void MosaicTraitement::preTraitement(cv::VideoCapture captRef, cv::UMat &oldFrame) {
+void MosaicTraitement::preTraitement(cv::VideoCapture *captRef, cv::UMat &oldFrame) {
     frameIndex = 0;
     frameIndexSeuil = 0;
 
     directory = path(file);
     if (check_dir(directory) == -1) throw (string) "Probleme pour le repertoire de sortie";
-    cRef = &captRef;
+    cRef = captRef;
 }
 
 void MosaicTraitement::mainTraitement(cv::UMat &frame) {
@@ -31,11 +31,9 @@ void MosaicTraitement::postTraitement() {
     Mat frame;
 
     for (const int &i : indexOfMosaicFrame) {
-        cRef->set(CAP_PROP_POS_FRAMES, i);
-        cRef->read(frame);
+        cRef->set(CAP_PROP_POS_FRAMES, i * 1.0);
         string out_name = make_name(directory, i, ".png");
         imwrite(out_name, frame);
     }
-
 }
 

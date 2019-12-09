@@ -27,7 +27,7 @@ public :
         frameIndexSeuil = 0;
     }
 
-    virtual void preTraitement(cv::VideoCapture captRef, cv::UMat &oldFrame);
+    virtual void preTraitement(cv::VideoCapture *captRef, cv::UMat &oldFrame);
 
     virtual void mainTraitement(cv::UMat &frame);
 

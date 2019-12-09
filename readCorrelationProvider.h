@@ -13,7 +13,7 @@ private:
     std::string file;
     std::ifstream ifs;
 public:
-    virtual void preTraitement(cv::VideoCapture captRef, cv::UMat &oldFrame);
+    virtual void preTraitement(cv::VideoCapture *captRef, cv::UMat &oldFrame);
 
     virtual void mainTraitement(cv::UMat &frame);
 

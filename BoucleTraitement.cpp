@@ -45,10 +45,10 @@ void BoucleTraitement::run(){
     cout<<endl;
     double r = 0.;
     corProvider->setRPointer(r);
-    corProvider->preTraitement(captRef, frame);
+    corProvider->preTraitement(&captRef, frame);
     for (auto& traitement : listeTraitement){
         traitement->setRPointer(r);
-        traitement->preTraitement(captRef, frame);
+        traitement->preTraitement(&captRef, frame);
     }
 
 
@@ -83,12 +83,17 @@ void BoucleTraitement::run(){
 
     }
 
-    for (auto& traitement : listeTraitement){
+    cout << "Dans boucleTraitement pointeur :" << &captRef << endl;
+    for (auto &traitement : listeTraitement) {
         traitement->postTraitement();
     }
 
-    cout<<endl;
+    cout << endl;
     t_now = std::chrono::system_clock::now();
-    std::chrono::duration<double> d = t_now-t_debut;
-    cout<<"Duration :"<< d.count()<<" s"<<endl;
+    std::chrono::duration<double> d = t_now - t_debut;
+    cout << "Duration :" << d.count() << " s" << endl;
+    cout << "cRef status :" << captRef.isOpened() << endl;
+    cout << " et :" <<
+         captRef.get(CV_CAP_PROP_POS_FRAMES) << endl;
+    captRef.release();
 }

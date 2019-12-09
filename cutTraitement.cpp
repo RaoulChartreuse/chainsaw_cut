@@ -11,11 +11,11 @@ using namespace cv;
 
 using namespace boost::filesystem;
 
-void CutTraitement::preTraitement(cv::VideoCapture captRef, cv::UMat &oldFrame) {
-    ex = static_cast<int>(captRef.get(cv::CAP_PROP_FOURCC));//on utilise le meme codecs c'est un peu nul
-    S = cv::Size((int) captRef.get(cv::CAP_PROP_FRAME_WIDTH),
-                 (int) captRef.get(cv::CAP_PROP_FRAME_HEIGHT));
-    fps = captRef.get(cv::CAP_PROP_FPS);
+void CutTraitement::preTraitement(VideoCapture *captRef, cv::UMat &oldFrame) {
+    ex = static_cast<int>(captRef->get(cv::CAP_PROP_FOURCC));//on utilise le meme codecs c'est un peu nul
+    S = cv::Size((int) captRef->get(cv::CAP_PROP_FRAME_WIDTH),
+                 (int) captRef->get(cv::CAP_PROP_FRAME_HEIGHT));
+    fps = captRef->get(cv::CAP_PROP_FPS);
 
     directory = path(file);
     //TODO gérer l'exeption mieux

@@ -7,11 +7,11 @@
 using namespace cv;
 using namespace std;
 
-void GraphTraitement::preTraitement(cv::VideoCapture captRef, cv::UMat &oldFrame) {
-    int ex = static_cast<int>(captRef.get(cv::CAP_PROP_FOURCC));//on utilise le meme codecs c'est un peu nul
-    cv::Size S = cv::Size((int) captRef.get(cv::CAP_PROP_FRAME_WIDTH),
-                          (int) captRef.get(cv::CAP_PROP_FRAME_HEIGHT));
-    outputVideo.open(file , ex, captRef.get(cv::CAP_PROP_FPS),S, true);
+void GraphTraitement::preTraitement(VideoCapture *captRef, cv::UMat &oldFrame) {
+    int ex = static_cast<int>(captRef->get(cv::CAP_PROP_FOURCC));//on utilise le meme codecs c'est un peu nul
+    cv::Size S = cv::Size((int) captRef->get(cv::CAP_PROP_FRAME_WIDTH),
+                          (int) captRef->get(cv::CAP_PROP_FRAME_HEIGHT));
+    outputVideo.open(file, ex, captRef->get(cv::CAP_PROP_FPS), S, true);
     indexFrame = 0;
     if (display) namedWindow("graph", WINDOW_AUTOSIZE);
 }

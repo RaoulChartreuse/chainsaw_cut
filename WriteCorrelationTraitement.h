@@ -19,7 +19,7 @@ public:
             : Traitement(nom, description), file(filename) {}
 
 
-    virtual void preTraitement(cv::VideoCapture captRef, cv::UMat &oldFrame);
+    virtual void preTraitement(cv::VideoCapture *captRef, cv::UMat &oldFrame);
 
     virtual void mainTraitement(cv::UMat &frame);
 

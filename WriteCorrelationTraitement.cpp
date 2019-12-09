@@ -7,7 +7,7 @@
 using namespace std;
 using namespace cv;
 
-void WriteCorrelationTraitement::preTraitement(cv::VideoCapture captRef, cv::UMat &oldFrame) {
+void WriteCorrelationTraitement::preTraitement(VideoCapture *captRef, cv::UMat &oldFrame) {
     ofs = ofstream(file);
 }
 

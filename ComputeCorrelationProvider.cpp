@@ -5,7 +5,7 @@
 #include "ComputeCorrelationProvider.h"
 
 using namespace cv;
-void ComputeCorrelationProvider::preTraitement(cv::VideoCapture captRef, cv::UMat &firstFrame) {
+void ComputeCorrelationProvider::preTraitement(VideoCapture *captRef, cv::UMat &firstFrame) {
 
     cvtColor(firstFrame, oldFrame, COLOR_BGR2GRAY);
     frame = oldFrame;
