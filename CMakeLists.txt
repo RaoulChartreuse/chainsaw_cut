@@ -9,7 +9,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 find_package(OpenCV  REQUIRED)
 
-find_package( Boost COMPONENTS system  filesystem REQUIRED )
+find_package( Boost COMPONENTS system  filesystem program_options REQUIRED )
 
 find_package(OpenMP)
 if (OPENMP_FOUND)
@@ -32,5 +32,6 @@ add_executable(build/chainsaw main.cpp BoucleTraitement.cpp
         cutTraitement.h mosaicTraitement.cpp mosaicTraitement.h
         check_dir.cpp)
 target_link_libraries( build/chainsaw
-        ${OpenCV_LIBS} ${Boost_FILESYSTEM_LIBRARY}  ${Boost_SYSTEM_LIBRARY})
+        ${OpenCV_LIBS} ${Boost_LIBRARIES} )
+
 
