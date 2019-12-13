@@ -1,7 +1,5 @@
 cmake_minimum_required(VERSION 2.8)
 project(chainsow_cut)
-#include_directories(/home/laurent/media/opencv/inc)
-#link_directories(/home/laurent/media/opencv/lib)
 
 # specify the C++ standard
 set(CMAKE_CXX_STANDARD 11)

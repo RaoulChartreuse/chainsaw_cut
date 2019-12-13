@@ -86,7 +86,7 @@ int main(int argc, char **argv) {
     if (vm.count("cut")) {
         boucle->addTraitement(
                 new CutTraitement("Coupe !", "", cutDir));
-        cout << "Cut treatment added" << endl;
+        cout << "Cut treatment added, destination directory"<< cutDir << endl;
     }
     if (vm.count("display")) {
         boucle->addTraitement(new Display("Display"));
@@ -95,7 +95,7 @@ int main(int argc, char **argv) {
     if (vm.count("mosaic")){
         boucle->addTraitement(
                 new MosaicTraitement("Mosaic", "", mosaicDir));
-        cout<<"Mosaic treatment added"<<endl;
+        cout<<"Mosaic treatment added, destination directory"<< mosaicDir <<endl;
 }
     boucle->run();
     return 0;

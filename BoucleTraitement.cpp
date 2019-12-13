@@ -98,5 +98,8 @@ void BoucleTraitement::run(){
     t_now = std::chrono::system_clock::now();
     std::chrono::duration<double> d = t_now - t_debut;
     cout << "Duration :" << d.count() << " s" << endl;
+
+
+    //Probably all the treatment must be deleted
     captRef.release();
 }

@@ -32,6 +32,7 @@ void MosaicTraitement::postTraitement() {
 
     for (const int &i : indexOfMosaicFrame) {
         cRef->set(CAP_PROP_POS_FRAMES, i * 1.0);
+        cRef->read(frame);
         string out_name = make_name(directory, i, ".png");
         imwrite(out_name, frame);
     }
