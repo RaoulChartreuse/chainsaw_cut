@@ -8,7 +8,7 @@
 #include <opencv2/opencv.hpp>
 #include "Traitement.h"
 #include "CorrelationProvider.h"
-#include <stdio.h>
+#include <cstdio>
 
 class BoucleTraitement {
 private :
@@ -17,7 +17,7 @@ private :
     CorrelationProvider *corProvider;
 
 public :
-    BoucleTraitement(std::string videoRef);
+    explicit BoucleTraitement(std::string videoRef);
 
     void addTraitement(Traitement *traitement);
     void setCorrelationProvider(CorrelationProvider *provider);

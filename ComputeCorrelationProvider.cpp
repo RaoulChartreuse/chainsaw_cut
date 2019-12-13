@@ -4,6 +4,8 @@
 
 #include "ComputeCorrelationProvider.h"
 
+#include <utility>
+
 using namespace cv;
 void ComputeCorrelationProvider::preTraitement(VideoCapture *captRef, cv::UMat &firstFrame) {
 
@@ -39,7 +41,7 @@ double ComputeCorrelationProvider::correlation2(cv::UMat &im_1, cv::UMat &im_2) 
     return correl;
 }
 
-ComputeCorrelationProvider::ComputeCorrelationProvider(std::string name) : CorrelationProvider(name) {
+ComputeCorrelationProvider::ComputeCorrelationProvider(std::string name) : CorrelationProvider(std::move(name)) {
     frame = 0;
 }
 

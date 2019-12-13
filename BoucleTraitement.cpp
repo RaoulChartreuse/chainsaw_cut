@@ -83,7 +83,7 @@ void BoucleTraitement::run(){
 
     }
 
-    cout << "Dans boucleTraitement pointeur :" << &captRef << endl;
+
     for (auto &traitement : listeTraitement) {
         traitement->postTraitement();
     }
@@ -92,8 +92,5 @@ void BoucleTraitement::run(){
     t_now = std::chrono::system_clock::now();
     std::chrono::duration<double> d = t_now - t_debut;
     cout << "Duration :" << d.count() << " s" << endl;
-    cout << "cRef status :" << captRef.isOpened() << endl;
-    cout << " et :" <<
-         captRef.get(CV_CAP_PROP_POS_FRAMES) << endl;
     captRef.release();
 }
