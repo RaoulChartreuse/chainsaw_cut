@@ -19,7 +19,11 @@ void GraphTraitement::preTraitement(VideoCapture *captRef, cv::UMat &oldFrame) {
 void GraphTraitement::mainTraitement(cv::UMat &frame) {
 // Eventuelement la gestion des fenetres
     if(indexFrame>plus){
-        draw_graph( indexFrame-plus);
+        //todo Dans la version commenté on a un décalge vers droite de plus
+        //draw_graph( indexFrame-plus);
+        //Dans la version non commenté le décalage vers la droite est eliminé mais
+        // il n'y a plus rien sur les points à droite de la ligne t=now
+        draw_graph( indexFrame);
     }
 
     R_tab.push_back(*r);

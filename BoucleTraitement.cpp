@@ -32,7 +32,7 @@ void BoucleTraitement::run(){
     auto t_now = std::chrono::system_clock::now();
     auto t_last = std::chrono::system_clock::now();
 
-    int i=1;
+
     cout<<"*********************************"<<endl;
     cout<<"**          Chainsaw           **"<<endl;
     cout<<"*********************************"<<endl<<endl;
@@ -60,7 +60,7 @@ void BoucleTraitement::run(){
     cout<<endl;
 
 
-
+    int i=1;
     while(!frame.empty()){
         t_now = std::chrono::system_clock::now();
         std::chrono::duration<double> elapsed_seconds = t_now-t_last;
@@ -82,6 +82,12 @@ void BoucleTraitement::run(){
         i++;
 
     }
+    std::chrono::duration<double> dd = t_now-t_debut;
+    cout<< 1.*i/dd.count()<<" fps; "
+        << 100.*(float) captRef.get(CAP_PROP_POS_FRAMES )/ (1.* n_frames)
+        << " %           "<<"\r";
+    cout.flush();
+    t_last =std::chrono::system_clock::now();
 
 
     for (auto &traitement : listeTraitement) {

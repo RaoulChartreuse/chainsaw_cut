@@ -14,7 +14,7 @@ private:
     cv::UMat oldFrame;
     cv::UMat frame;
 
-    static static double correlation2(cv::UMat &im_1, cv::UMat &im_2);
+    static double correlation2(cv::UMat &im_1, cv::UMat &im_2);
 
 public:
     virtual void preTraitement(cv::VideoCapture *captRef, cv::UMat &oldFrame);
