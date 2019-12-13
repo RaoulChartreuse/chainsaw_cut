@@ -69,7 +69,7 @@ int main( int argc, char** argv ){
   outputVideo.open(out_name , ex, captRefrnc.get(CAP_PROP_FPS),S, true);
 
   
-  //boucle  VideoWriter outputVideo;
+  //Boucle  VideoWriter outputVideo;
   int i = 0;
   double n_frames = (double) captRefrnc.get( CAP_PROP_FRAME_COUNT);
   while(!frame.empty()){

@@ -71,3 +71,8 @@ local.properties
 
 # Je veux pas de .project
 .project
+
+CMakeCache.txt
+Makefile
+*.cmake
+*.cbp
